@@ -9,14 +9,19 @@ public class ListNode {
         val = x;
     }
 
-    public static ListNode createList(int ... vals){
+    public ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+
+    public static ListNode createList(int... vals) {
         ListNode result = null;
         ListNode p = null;
         for (int i = 0; i < vals.length; i++) {
-            if(i==0){
+            if (i == 0) {
                 result = new ListNode(vals[i]);
                 p = result;
-            }else{
+            } else {
                 p.next = new ListNode(vals[i]);
                 p = p.next;
             }

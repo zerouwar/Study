@@ -1,5 +1,8 @@
 package cn.chenhuanming.leet.code.medium;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。
  *
@@ -26,16 +29,16 @@ public class 和为k的子数组 {
 
     public int subarraySum(int[] nums, int k) {
         int res = 0;
-        int last = 0;
-        int lastIndex = 0;
+        int pre = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+
         for (int i = 0; i < nums.length; i++) {
-            while(lastIndex<nums.length && last<=k){
-                last += nums[lastIndex++];
+            pre += nums[i];
+            if (map.get(pre - k) != null) {
+                res += map.get(pre - k);
             }
-            if(last == k){
-                res++;
-            }
-            last -= nums[i];
+            map.put(pre, map.getOrDefault(pre, 0) + 1);
         }
         return res;
     }
